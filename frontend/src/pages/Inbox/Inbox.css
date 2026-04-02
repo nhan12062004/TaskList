@@ -1,0 +1,738 @@
+.inbox-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px 90px 20px 20px;
+    /* 130px left (parent) + 20px self = 150px. 40px right (parent) + 90px self = 130px. Close enough to visual match or try 110px */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.inbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    /* Anchor for absolute actions */
+}
+
+.inbox-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #202020;
+    margin: -15px 0 0 35px;
+    letter-spacing: -0.01em;
+}
+
+.header-actions {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.header-action-btn {
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    /* Reduced from 8px 12px */
+    cursor: pointer;
+    color: #666;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.header-action-btn:hover {
+    background: #f3f3f3;
+    color: #202020;
+}
+
+.header-action-btn.icon-only {
+    padding: 6px 4px;
+}
+
+.header-action-btn svg {
+    display: block;
+}
+
+.action-label {
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.header-action-btn:hover .action-label {
+    color: #202020;
+}
+
+.inbox-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: -10px;
+    /* Shifted up significantly to be visible */
+    padding-bottom: 0;
+    /* Removed excess padding */
+}
+
+/* Prevent body scroll if content fits */
+body {
+    overflow: hidden;
+}
+
+#root,
+.app,
+.content {
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    overflow-y: auto;
+    /* Allow scroll only inside content if needed */
+}
+
+.empty-illustration {
+    width: 220px;
+    height: auto;
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.inbox-empty-state h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #202020;
+    margin-bottom: 8px;
+}
+
+.inbox-empty-state p {
+    color: #666;
+    font-size: 14px;
+    max-width: 400px;
+    /* Increased to accommodate manual breaks */
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.add-task-btn-large {
+    background-color: #dc4c3e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    /* Even more compact */
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.add-task-btn-large:hover {
+    background-color: #c3392c;
+}
+
+.add-task-btn-large:active {
+    transform: scale(0.98);
+}
+
+
+/* Task List Styles */
+.task-list {
+    margin-top: 0;
+    padding-bottom: 40px;
+    padding-left: 11px;
+    padding-right: 35px;
+}
+
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 0;
+    padding-left: 8px;
+    margin-left: -8px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    position: relative;
+}
+
+/* Reduce padding for tasks without meta info (no date/labels) */
+.task-item:has(.task-meta:empty),
+.task-item:not(:has(.task-meta)) {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.task-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    /* Aligns with 'Inbox' text roughly (35px margin on header vs 3px effective start of item) */
+    right: 35px;
+    /* Shorten on the right side as well */
+    height: 1px;
+    background-color: #f0f0f0;
+}
+
+.task-item:hover {
+    background-color: transparent;
+}
+
+/* Drag and drop styles */
+.task-item.dragging {
+    opacity: 0.5;
+    background-color: #f5f5f5;
+}
+
+.task-item.drag-over {
+    border-top: 2px solid #dc4c3e;
+    margin-top: -2px;
+}
+
+/* Drag handle - only visible on hover */
+.task-drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 2px;
+    margin-top: -2px;
+    color: #666;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.task-item:hover .task-drag-handle {
+    opacity: 1;
+}
+
+.task-drag-handle:hover {
+    color: #333;
+}
+
+.task-drag-handle svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Task actions - only visible on hover */
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    margin-left: auto;
+    padding-left: 12px;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
+}
+
+.task-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
+    color: #808080;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.task-action-btn:hover {
+    background-color: #eee;
+    color: #333;
+}
+
+.task-checkbox-wrapper {
+    margin-right: 12px;
+    margin-top: 2px;
+}
+
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #666;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.task-checkbox:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #aeaeae;
+}
+
+/* Priorities */
+.task-checkbox.priority-1 {
+    border-color: #d1453b;
+    background: rgba(209, 69, 59, 0.1);
+}
+
+.task-checkbox.priority-1:hover {
+    color: #d1453b;
+}
+
+.task-checkbox.priority-2 {
+    border-color: #eb8909;
+    background: rgba(235, 137, 9, 0.1);
+}
+
+.task-checkbox.priority-2:hover {
+    color: #eb8909;
+}
+
+.task-checkbox.priority-3 {
+    border-color: #246fe0;
+    background: rgba(36, 111, 224, 0.1);
+}
+
+.task-checkbox.priority-3:hover {
+    color: #246fe0;
+}
+
+.task-checkbox.priority-4 {
+    border-color: #808080;
+}
+
+.task-checkbox.priority-4:hover {
+    color: #808080;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 14px;
+    color: #202020;
+    line-height: 1.5;
+    margin-bottom: 2px;
+    word-break: break-word;
+}
+
+.task-desc {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.task-meta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    /* Gap between date and first label, and between labels */
+    font-size: 12px;
+    color: #808080;
+}
+
+.task-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #d1453b;
+    /* Date color often red or dynamic */
+}
+
+.task-date.is-today {
+    color: #058527;
+}
+
+.task-date.is-tomorrow {
+    color: #d86a00;
+}
+
+.task-date.is-next-seven {
+    color: #692fc2;
+    /* Purple */
+}
+
+.task-date svg {
+    width: 12px;
+    height: 12px;
+    margin-top: -1px;
+}
+
+.task-label-tag svg {
+    width: 12px;
+    height: 12px;
+    fill: #202020;
+    stroke: none;
+    margin-top: -1px;
+}
+
+.task-label-tag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #808080;
+}
+
+/* Add Task Text Button */
+.add-task-btn-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
+    margin-top: 10px;
+    margin-left: 24px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    width: calc(100% - 24px);
+    text-align: left;
+    transition: color 0.2s ease;
+}
+
+.add-task-btn-text:hover {
+    color: #dd4b39;
+}
+
+.add-task-btn-text .plus-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dd4b39;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.add-task-btn-text:hover .plus-icon {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.add-task-btn-text svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+    stroke: currentColor;
+}
+
+/* When sidebar is collapsed, center the content */
+.app.sidebar-collapsed .inbox-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-right: 20px;
+    /* Reset the heavy right padding */
+    padding-left: 20px;
+    /* Reset left padding for symmetry */
+}
+
+/* Section styles */
+.section-container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 11px;
+    margin-right: 35px;
+    position: relative;
+}
+
+.section-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 11px;
+    right: 0;
+    height: 1px;
+    background-color: #f0f0f0;
+}
+
+.section-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: -8px;
+    transition: none;
+}
+
+.section-toggle-btn:hover {
+    background-color: transparent;
+}
+
+.section-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    transform: rotate(0deg);
+    color: #808080;
+    /* Move visual touch target styles here */
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+}
+
+.section-arrow:hover {
+    background-color: #f3f3f3;
+    color: #202020;
+}
+
+.section-arrow.collapsed {
+    transform: rotate(-90deg);
+}
+
+.section-arrow svg {
+    /* SVG size */
+    width: 16px;
+    /* slightly larger hit area visual for new icon? */
+    height: 16px;
+}
+
+.section-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #202020;
+}
+
+.section-count {
+    display: none;
+}
+
+.section-more-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #808080;
+    opacity: 1;
+    transition: color 0.2s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-header:hover .section-more-btn {
+    opacity: 1;
+}
+
+.section-more-btn:hover {
+    background: #f3f3f3;
+    color: #333;
+}
+
+.section-more-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Section Drag Handle */
+.section-drag-handle {
+    position: absolute;
+    left: -36px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b3b3b3;
+    cursor: grab;
+    opacity: 0;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.section-header:hover .section-drag-handle {
+    opacity: 1;
+}
+
+.section-drag-handle:hover {
+    color: #444;
+    background-color: #f3f3f3;
+}
+
+.section-drag-handle svg {
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.section-tasks {
+    padding-left: 0;
+    /* Tasks within section inherit standard task styles */
+}
+
+.section-add-task {
+    margin-left: 24px;
+}
+
+/* Add Section Divider Button (like reference image) */
+.add-section-divider-btn {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 30px - 35px);
+    /* Match task-item::after width */
+    margin: 4px 0;
+    margin-left: 30px;
+    /* Match task-item::after left */
+    padding: 8px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.add-section-divider-btn:hover {
+    opacity: 1;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: #dc4c3e;
+}
+
+.divider-text {
+    padding: 0 12px;
+    color: #dc4c3e;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Old Add Section Button (hidden) */
+.add-section-btn {
+    display: none;
+}
+
+.add-section-btn:hover {
+    color: #dd4b39;
+}
+
+.add-section-btn .section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add Section Form */
+.add-section-form {
+    margin: 16px 0;
+    margin-left: 30px;
+    margin-right: 35px;
+    padding: 0;
+    background: transparent;
+}
+
+.add-section-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    background: #fff;
+}
+
+.add-section-input:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.add-section-input::placeholder {
+    color: #999;
+    font-weight: 600;
+}
+
+.add-section-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.add-section-submit {
+    background-color: #db4c3f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-section-submit:hover:not(.disabled) {
+    background-color: #c3392c;
+}
+
+.add-section-submit.disabled {
+    background-color: #db4c3f;
+    color: white;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.add-section-cancel {
+    background: transparent;
+    color: #444;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-section-cancel:hover {
+    background: #f0f0f0;
+    color: #000;
+}

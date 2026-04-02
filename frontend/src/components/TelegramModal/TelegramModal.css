@@ -1,0 +1,428 @@
+.telegram-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.telegram-modal {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.telegram-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: white;
+}
+
+.telegram-header-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.telegram-header-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.telegram-modal-header h2 {
+    flex: 1;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.telegram-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s;
+}
+
+.telegram-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.telegram-modal-body {
+    padding: 24px;
+}
+
+.telegram-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 0;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #0088cc;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.status-badge.connected {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.not-connected {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.telegram-info {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.telegram-features {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.feature-icon {
+    font-size: 16px;
+}
+
+.telegram-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.telegram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.telegram-btn.primary {
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: white;
+}
+
+.telegram-btn.primary:hover {
+    background: linear-gradient(135deg, #0077b5 0%, #006699 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+}
+
+.telegram-btn.secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.telegram-btn.secondary:hover {
+    background: #e0e0e0;
+}
+
+.telegram-btn.danger {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.telegram-btn.danger:hover {
+    background: #ffcdd2;
+}
+
+.telegram-btn.full-width {
+    width: 100%;
+}
+
+.link-generated {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #f0f4f8;
+    border: 2px dashed #0088cc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.link-box code {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0088cc;
+    letter-spacing: 4px;
+}
+
+.link-expire {
+    font-size: 12px;
+    color: #999;
+}
+
+.telegram-error {
+    margin-top: 16px;
+    padding: 12px;
+    background: #ffebee;
+    border-radius: 8px;
+    color: #c62828;
+    font-size: 14px;
+    text-align: center;
+}
+
+.telegram-connected .telegram-actions {
+    flex-direction: column;
+}
+
+/* Disconnect Confirmation Dialog */
+.disconnect-confirm {
+    text-align: center;
+    padding: 8px 0;
+    animation: fadeSlideIn 0.3s ease;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.confirm-icon {
+    margin-bottom: 12px;
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.confirm-title {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.confirm-desc {
+    margin: 0 0 20px 0;
+    font-size: 13px;
+    color: #777;
+    line-height: 1.5;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.confirm-actions .telegram-btn {
+    flex: 1;
+    justify-content: center;
+}
+
+.confirm-actions .telegram-btn.secondary {
+    background: #f5f5f5;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.confirm-actions .telegram-btn.secondary:hover {
+    background: #eee;
+}
+
+.confirm-actions .telegram-btn.danger {
+    background: #e53935;
+    color: white;
+    border: none;
+}
+
+.confirm-actions .telegram-btn.danger:hover {
+    background: #c62828;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
+}
+
+.confirm-actions .telegram-btn.danger:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button Spinner */
+.btn-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+/* Disconnect Success */
+.disconnect-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    animation: fadeSlideIn 0.3s ease;
+}
+
+.success-icon-wrap {
+    animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.success-circle {
+    stroke-dasharray: 63;
+    stroke-dashoffset: 63;
+    animation: drawCircle 0.5s ease forwards;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-check {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    animation: drawCheck 0.3s ease 0.3s forwards;
+}
+
+@keyframes drawCheck {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-text {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4caf50;
+}
+
+/* Danger button with icon */
+.telegram-btn.danger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}

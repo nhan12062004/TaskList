@@ -1,0 +1,1292 @@
+/* Container & Overlay */
+.atm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* Start from top like Todoist */
+  padding-top: 130px;
+  padding-left: 100px;
+  z-index: 2000;
+}
+
+.atm-container {
+  background: white;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  animation: bloom 0.15s ease-out;
+  transform-origin: bottom center;
+}
+
+@keyframes bloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.atm-container.closing {
+  animation: shrink 0.15s ease-in forwards;
+}
+
+@keyframes shrink {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.atm-main-content {
+  padding: 16px 16px 24px 16px;
+}
+
+/* Inputs */
+.atm-title-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0px;
+}
+
+.atm-title-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #f3e6d8;
+  color: #8a5b2d;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.atm-input-title {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #202020;
+}
+
+.atm-input-title::placeholder {
+  color: #808080;
+  font-weight: 700;
+}
+
+.atm-input-desc::placeholder {
+  font-weight: 400;
+}
+
+.atm-input-desc {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.atm-title-voice-btn {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.atm-title-voice-btn:hover {
+  background: #f3f3f3;
+  color: #202020;
+}
+
+/* Action Buttons (The Tags) */
+.atm-actions-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+}
+
+.atm-tag-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: var(--font-sm);
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.2s;
+}
+
+.atm-tag-clear {
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  line-height: 1;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.atm-tag-btn:hover {
+  background: #f3f3f3;
+}
+
+.atm-tag-btn.active {
+  color: #555;
+  border-color: #ddd;
+}
+
+.atm-tag-btn.is-today {
+  color: #0f7b3a;
+  border-color: #bfe7c9;
+}
+
+.atm-tag-btn.is-today .atm-tag-icon {
+  color: #0f7b3a;
+  border-color: #bfe7c9;
+}
+
+.atm-tag-btn.is-tomorrow {
+  color: #d86a00;
+  border-color: #f4d2ae;
+}
+
+.atm-tag-btn.is-tomorrow .atm-tag-icon {
+  color: #d86a00;
+  border-color: #f4d2ae;
+}
+
+.atm-tag-btn.is-next-seven {
+  color: #7b4bb7;
+  border-color: #e0d2f4;
+}
+
+.atm-tag-btn.is-next-seven .atm-tag-icon {
+  color: #7b4bb7;
+  border-color: #e0d2f4;
+}
+
+.atm-more-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  margin-left: auto;
+  font-size: var(--font-lg);
+}
+
+/* DatePicker Popover */
+.atm-datepicker-wrapper {
+  position: relative;
+}
+
+.atm-datepicker-popover {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 20px;
+  width: 280px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.atm-dp-search input {
+  width: 100%;
+  padding: 8px 10px;
+  /* Reduced padding */
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;
+  font-size: var(--font-sm);
+}
+
+/* Quick List (Today, Tomorrow...) */
+.atm-dp-list {
+  padding: 4px 0;
+}
+
+.atm-dp-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  /* Reduced padding */
+  cursor: pointer;
+  font-size: var(--font-sm);
+}
+
+.atm-dp-item:hover {
+  background: #f3f3f3;
+}
+
+.atm-dp-ico {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.atm-dp-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.atm-dp-ico svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.atm-dp-label {
+  flex: 1;
+  color: #202020;
+}
+
+.atm-dp-sub {
+  color: #808080;
+  font-size: var(--font-xs);
+}
+
+.atm-dp-sub.right {
+  min-width: 48px;
+  text-align: right;
+}
+
+/* Scrollable Calendar Area */
+.atm-dp-scroll-area {
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.atm-dp-scroll-area::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+.atm-dp-fixed {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 3;
+  padding: 6px 10px 0 10px;
+  border-top: 1px solid #eee;
+}
+
+.atm-dp-month-block {
+  padding: 0 0 10px 0;
+}
+
+.atm-dp-month-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px 2px 8px 2px;
+  color: #777;
+  font-size: var(--font-xs);
+}
+
+.atm-dp-month-divider-label {
+  white-space: nowrap;
+  font-weight: 700;
+  color: #202020;
+}
+
+.atm-dp-month-divider-line {
+  height: 1px;
+  background: #eee;
+  width: 100%;
+}
+
+.atm-dp-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-sm);
+  margin-bottom: 8px;
+  padding: 0 5px;
+}
+
+.atm-dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 10px;
+  color: #aaa;
+  margin-bottom: 2px;
+}
+
+.atm-dp-weekdays span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.atm-dp-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.atm-dp-day {
+  width: 30px;
+  height: 30px;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.atm-dp-day:hover:not(.empty) {
+  background: #eee;
+}
+
+.atm-dp-day.today {
+  color: #db4c3f;
+  font-weight: bold;
+}
+
+.atm-dp-day.selected {
+  background: #db4c3f !important;
+  color: white !important;
+}
+
+/* DatePicker Footer */
+.atm-dp-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #eee;
+  padding: 12px;
+}
+
+.atm-dp-footer button {
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: var(--font-xs);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #555;
+}
+
+.atm-dp-footer button:hover {
+  background: #f9f9f9;
+}
+
+/* Modal Footer */
+.atm-footer {
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.atm-project {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-sm);
+  color: #666;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.atm-project-name {
+  font-weight: 700;
+}
+
+.atm-project:hover,
+.atm-project.active {
+  background: #f3f3f3;
+}
+
+.atm-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.atm-btn-cancel {
+  background: #f5f5f5;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  color: #444;
+}
+
+.atm-btn-cancel:hover {
+  background: #e5e5e5;
+}
+
+.atm-btn-voice {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.atm-btn-voice:hover {
+  background: #f3f3f3;
+  color: #db4c3f;
+}
+
+.atm-btn-voice svg {
+  width: 24px;
+  height: 24px;
+}
+
+.atm-btn-add {
+  background: #db4c3f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: var(--font-sm);
+  cursor: pointer;
+  opacity: 0.6;
+  /* Default state until input is filled */
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.atm-btn-add.is-active {
+  background: #b6261c;
+  opacity: 1;
+}
+
+/* Helper Colors for Quick Options */
+.atm-dp-ico.green {
+  color: #058527;
+}
+
+.atm-dp-ico.orange {
+  color: #eb8909;
+}
+
+.atm-dp-ico.blue {
+  color: #246fe0;
+}
+
+.atm-dp-ico.purple {
+  color: #7c59d1;
+}
+
+/* Custom Scrollbar for the Calendar REMOVED */
+
+/* Popover Position */
+.atm-datepicker-wrapper {
+  position: relative;
+}
+
+.atm-datepicker-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  /* Position right below button */
+  left: 0;
+  /* Align with wrapper/button left */
+  width: 260px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+}
+
+.atm-datepicker-popover.flip,
+.atm-priority-popover.flip,
+.atm-label-popover.flip {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+
+
+.atm-dp-scroll-area {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 2px 10px 8px 10px;
+  position: relative;
+}
+
+.atm-dp-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.atm-dp-month-title {
+  font-weight: bold;
+  font-size: var(--font-sm);
+}
+
+.atm-dp-nav {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: var(--font-lg);
+  line-height: 1;
+  color: #666;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-btn.disabled {
+  color: #eee;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.nav-btn.dot {
+  font-size: var(--font-sm);
+}
+
+.atm-dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.atm-dp-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.atm-dp-day {
+  width: 30px;
+  height: 30px;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.atm-dp-day:hover:not(.empty):not(.past) {
+  background: #eee;
+}
+
+.atm-dp-day.selected {
+  background: #db4c3f !important;
+  color: white;
+}
+
+.atm-dp-day.today {
+  color: #db4c3f;
+  font-weight: bold;
+}
+
+.atm-dp-day.past {
+  color: #ddd;
+  cursor: default;
+}
+
+.atm-dp-nav {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: var(--font-lg);
+  line-height: 1;
+  color: #666;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: #f3f3f3;
+}
+
+.nav-btn.disabled {
+  color: #eee;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.nav-btn.dot {
+  font-size: var(--font-sm);
+}
+
+.atm-dp-day.past {
+  color: #ccc;
+  cursor: default;
+}
+
+.atm-dp-day.past:hover {
+  background: transparent;
+}
+
+.atm-dp-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.atm-dp-month-title {
+  font-weight: bold;
+  font-size: var(--font-sm);
+  color: #202020;
+}
+
+.atm-dp-ico.blue {
+  color: #246fe0;
+}
+
+.atm-dp-day.past {
+  color: #ccc;
+  cursor: default;
+}
+
+.nav-btn.disabled {
+  color: #eee;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.atm-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+  z-index: 2000;
+}
+
+.atm-confirm-box {
+  background: white;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.atm-confirm-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.atm-confirm-text {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+.atm-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.atm-confirm-btn-cancel {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333;
+}
+
+.atm-confirm-btn-discard {
+  background: #db4c3f;
+  border: 1px solid #db4c3f;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.atm-confirm-btn-discard:hover {
+  background: #b6261c;
+}
+
+.atm-priority-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.atm-priority-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  min-width: 140px;
+  z-index: 1000;
+  padding: 4px 0;
+}
+
+.atm-p-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+}
+
+.atm-p-item:hover {
+  background-color: #f3f3f3;
+}
+
+.atm-p-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.atm-p-check {
+  color: #db4c3f;
+  font-weight: bold;
+}
+
+/* Flag Colors */
+.atm-p-flag {
+  display: flex;
+  align-items: center;
+}
+
+.atm-p-flag svg {
+  color: inherit;
+  fill: currentColor;
+}
+
+.atm-p-flag.p1 {
+  color: #d1453b;
+}
+
+/* Red */
+.atm-p-flag.p2 {
+  color: #eb8909;
+}
+
+/* Orange */
+.atm-p-flag.p3 {
+  color: #246fe0;
+}
+
+/* Blue */
+.atm-p-flag.p4 {
+  color: #808080;
+}
+
+/* Grey */
+
+.icon-p1 {
+  color: #d1453b;
+}
+
+.icon-p2 {
+  color: #eb8909;
+}
+
+.icon-p3 {
+  color: #246fe0;
+}
+
+.atm-priority-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #f3e6d8;
+  color: #8a5b2d;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 6px;
+  border: none;
+}
+
+.atm-priority-chip .close {
+  font-size: 20px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.atm-priority-chip .close:hover {
+  opacity: 1;
+}
+
+.atm-label-wrapper {
+  position: relative;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.atm-label-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  min-width: 250px;
+  z-index: 1000;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.atm-label-search {
+  margin: 6px;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.atm-label-search:focus {
+  border-color: #555;
+}
+
+.atm-label-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.atm-label-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+}
+
+.atm-label-item:hover {
+  background-color: #f3f3f3;
+}
+
+.atm-label-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
+.atm-label-empty {
+  padding: 8px 12px;
+  color: #888;
+  font-size: 13px;
+  text-align: center;
+}
+
+.atm-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.atm-checkbox.checked {
+  background-color: #db4c3f;
+  border-color: #db4c3f;
+}
+
+.atm-label-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #f3e6d8;
+  color: #8a5b2d;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.atm-label-chip:hover {
+  background: #eedccb;
+}
+
+.atm-label-chip .prefix {
+  margin-right: 2px;
+  font-weight: 400;
+  color: inherit;
+  font-size: 18px;
+}
+
+.atm-content-editable {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  color: #202020;
+  min-height: 34px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 4px 0;
+  display: inline-block;
+  cursor: text;
+}
+
+.atm-content-editable:empty:before {
+  content: attr(placeholder);
+  color: #808080;
+  pointer-events: none;
+  font-weight: 700;
+}
+
+.chip-item {
+  display: inline-flex;
+  align-items: center;
+  background: #f3e6d8;
+  color: #202020;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin: 0 2px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: baseline;
+  user-select: none;
+}
+
+.chip-item:hover {
+  background: #eedccb;
+}
+
+.chip-item .prefix {
+  margin-right: 2px;
+  font-weight: 400;
+  color: inherit;
+  font-size: 18px;
+}
+
+.chip-item .close {
+  margin-left: 4px;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.chip-item .close:hover {
+  opacity: 1;
+}
+
+.atm-label-create {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  border-top: 1px solid #eee;
+}
+
+.atm-label-create:hover {
+  background-color: #f3f3f3;
+}
+
+.plus-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.atm-project-popover {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background: white;
+  border: 1px solid #dfdfdf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  overflow: hidden;
+  animation: projectFadeIn 0.1s ease-out;
+}
+
+.atm-project-search-wrapper {
+  padding: 10px;
+}
+
+.atm-project-search {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+.atm-project-search:focus {
+  background-color: white;
+  border-color: #999;
+}
+
+.atm-project-list {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.atm-project-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.atm-project-item.is-child-project {
+  padding-left: 33px;
+}
+
+.atm-project-item:hover,
+.atm-project-item.is-selected {
+  background-color: #f3f3f3;
+}
+
+.atm-p-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #202020;
+  max-width: 85%;
+}
+
+.atm-p-left svg {
+  width: 20px;
+  height: 20px;
+  color: #808080;
+  flex-shrink: 0;
+}
+
+.atm-p-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.atm-p-sublabel {
+  color: #808080;
+  font-size: 12px;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+.atm-p-check {
+  color: #db4c3f;
+  display: flex;
+  align-items: center;
+}
+
+.atm-p-check svg {
+  width: 16px;
+  height: 16px;
+}
+
+.atm-project-group-header {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #202020;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d9d6d2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #3a3a3a;
+}
+
+.atm-project-empty {
+  padding: 0 12px 8px 12px;
+  color: #777;
+  font-size: 13px;
+}
+
+.atm-project-create {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #202020;
+  font-weight: 500;
+  border-top: 1px solid #f0f0f0;
+}
+
+.atm-project-create:hover {
+  background-color: #f3f3f3;
+}
+
+.atm-project-create .plus-icon {
+  margin-right: 10px;
+  color: #db4c3f;
+  font-weight: bold;
+}
+
+@keyframes projectFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

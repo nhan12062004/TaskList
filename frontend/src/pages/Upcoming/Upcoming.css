@@ -1,0 +1,294 @@
+/* Upcoming.css */
+.upcoming-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 110px 0 20px;
+    /* Symmetry: total 150px each side */
+    background: white;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+/* Header Sections */
+.upcoming-container .upcoming-header-top {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    padding: 15px 0 0 0;
+}
+
+/* Display button: Top right absolute */
+.upcoming-container .header-actions {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 20;
+}
+
+.upcoming-container .header-action-btn {
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    cursor: pointer;
+}
+
+.upcoming-container .header-row-1 {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.upcoming-container .header-row-1 h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #202020;
+    margin: 0 0 0 35px;
+    /* Alignment pivot */
+    letter-spacing: -0.01em;
+}
+
+/* Row 2: Month & Navigation */
+.upcoming-container .header-row-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-left: 35px;
+}
+
+.upcoming-container .month-picker {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202020;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.upcoming-container .week-nav {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    background: white;
+    height: 30px;
+    overflow: hidden;
+}
+
+.upcoming-container .week-nav button {
+    background: none;
+    border: none;
+    height: 100%;
+    padding: 0 8px;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.upcoming-container .nav-today-btn {
+    color: #202020 !important;
+    font-size: 13px !important;
+    font-weight: 400;
+    padding: 0 10px !important;
+}
+
+.upcoming-container .nav-today-btn::before,
+.upcoming-container .nav-today-btn::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background-color: #dfdfdf;
+}
+
+.upcoming-container .nav-today-btn::before {
+    left: 0;
+}
+
+.upcoming-container .nav-today-btn::after {
+    right: 0;
+}
+
+/* DATE STRIP - THE LINE STARTS EXACTLY UNDER H1 */
+.upcoming-container .date-strip {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-bottom: 12px;
+    /* Add space for the line */
+    padding-left: 35px;
+    position: relative;
+    border-bottom: none;
+    /* Removed the broad border */
+}
+
+/* The horizontal line: Aligned with the 'U' of Upcoming */
+.upcoming-container .date-strip::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 35px;
+    /* STARTS EXACTLY AT THE TITLE ALIGNMENT */
+    right: 0;
+    height: 1px;
+    background-color: #f0f0f0;
+}
+
+.upcoming-container .date-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    /* Sát khít hơn nữa */
+    cursor: pointer;
+}
+
+.upcoming-container .date-cell:first-child {
+    justify-content: flex-start;
+}
+
+.upcoming-container .day-name {
+    font-size: 11px;
+    color: #aaaaaa;
+    font-weight: 500;
+}
+
+.upcoming-container .day-number {
+    font-size: 13px;
+    color: #888;
+    width: 22px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.upcoming-container .date-cell.today .day-name,
+.upcoming-container .date-cell.selected .day-name {
+    color: #202020;
+}
+
+.upcoming-container .date-cell.today .day-number,
+.upcoming-container .date-cell.selected .day-number {
+    background: #dc4c3e;
+    color: white;
+    width: 26px;
+    height: 22px;
+    font-weight: 600;
+}
+
+/* Body Content */
+.upcoming-container .upcoming-body {
+    padding: 20px 0 40px 0;
+    overflow-y: auto;
+    flex: 1;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.upcoming-container .upcoming-body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.upcoming-container .date-group {
+    margin-bottom: 30px;
+    padding-left: 35px;
+}
+
+.upcoming-container .date-group-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: #202020;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 8px;
+    margin-bottom: 0px;
+}
+
+.app.sidebar-collapsed .upcoming-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Add Task Button - Align with Title axis */
+.upcoming-container .add-task-btn-text {
+    display: flex !important;
+    align-items: center !important;
+    background: none !important;
+    border: none !important;
+    color: #666 !important;
+    /* Ban đầu màu đen xám */
+    font-size: 14px !important;
+    padding: 10px 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    cursor: pointer !important;
+    font-weight: 400 !important;
+    width: 100% !important;
+    text-align: left !important;
+}
+
+.upcoming-container .add-task-btn-text:hover {
+    color: #dd4b39 !important;
+    /* Hover chuyển màu đỏ */
+}
+
+.upcoming-container .add-task-btn-text .plus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    /* Alignment with potential checkboxes */
+    height: 18px;
+    margin-right: 12px;
+}
+
+.upcoming-container .add-task-btn-text:hover .plus-icon {
+    background-color: #dd4b39;
+    color: white;
+    border-radius: 50%;
+}
+
+.upcoming-container .upcoming-task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.upcoming-container .task-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #808080;
+    margin-right: 12px;
+}
+
+/* Add Task Inline Form Overrides */
+.upcoming-container .ati-container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    /* Sát tuyệt đối */
+    border-radius: 8px !important;
+}

@@ -1,0 +1,242 @@
+.projects-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #fff;
+    padding: 20px 90px 20px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.projects-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.projects-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #202020;
+    margin: -15px 0 0 35px;
+    letter-spacing: -0.01em;
+}
+
+.header-actions {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.settings-btn:hover {
+    background-color: #f3f3f3;
+}
+
+
+.search-section {
+    margin: 0 0 16px 35px;
+    position: relative;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    border-color: #aaa;
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 40px 35px;
+}
+
+.filter-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-label {
+    font-size: 14px;
+    color: #202020;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #888;
+}
+
+input:checked+.slider:before {
+    transform: translateX(16px);
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f5f5f5;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #202020;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #eeeeee;
+}
+
+.projects-list-section {
+    margin: 20px 0 0 35px;
+}
+
+.list-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: #202020;
+    margin-bottom: 8px;
+}
+
+.divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin-bottom: 12px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    transition: background-color 0.1s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.project-item:hover {
+    background-color: #fafafa;
+}
+
+.project-item:hover .item-actions {
+    opacity: 1;
+}
+
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    color: #202020;
+}
+
+.hash-icon {
+    color: #888;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.item-actions {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.more-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.more-btn:hover {
+    background-color: #eee;
+}
+
+/* When sidebar is collapsed, center the content */
+.app.sidebar-collapsed .projects-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+}

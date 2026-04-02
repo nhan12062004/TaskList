@@ -1,0 +1,165 @@
+.completed-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: #fff;
+}
+
+.completed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 35px 10px 20px;
+    z-index: 10;
+}
+
+.project-selector {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    gap: 4px;
+    transition: background-color 0.2s;
+    border-radius: 5px;
+}
+
+.project-selector:hover {
+    background-color: #f3f3f3;
+}
+
+.project-selector h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #202020;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.completed-content {
+    flex: 1;
+    padding: 0 40px 100px 40px;
+}
+
+.completed-content.scrollable {
+    overflow-y: auto;
+}
+
+.activity-group {
+    margin-top: 30px;
+}
+
+.group-date {
+    font-size: 13px;
+    font-weight: 700;
+    color: #202020;
+    margin-bottom: 12px;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.1s;
+}
+
+.activity-item:hover {
+    background-color: #fafafa;
+}
+
+.item-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.activity-text {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.action-label,
+.detail-label {
+    color: #202020;
+}
+
+/* Pills styling */
+.comment-pill,
+.task-pill,
+.target-pill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 13px;
+    background-color: #fff;
+    color: #202020;
+}
+
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border: 2.5px solid;
+    border-radius: 50%;
+}
+
+.target-icon {
+    display: flex;
+    align-items: center;
+}
+
+.item-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #888;
+}
+
+.location-label {
+    color: #888;
+}
+
+.time-label {
+    min-width: 40px;
+    text-align: right;
+}
+
+.history-footer {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.history-footer p {
+    font-size: 13px;
+    color: #999;
+}

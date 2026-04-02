@@ -1,0 +1,273 @@
+.filters-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px 90px 20px 20px;
+}
+
+/* Prevent body scroll if content fits - Match Inbox/Today */
+body {
+    overflow: hidden;
+}
+
+#root,
+.app,
+.content {
+    height: 100%;
+    overflow: hidden;
+}
+
+.content {
+    overflow-y: auto;
+}
+
+.filters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.filters-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #202020;
+    margin: 0 0 0 35px;
+    letter-spacing: -0.01em;
+}
+
+/* When sidebar is collapsed, center the content */
+.app.sidebar-collapsed .filters-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+/* New Filters Body Styles */
+.filters-body {
+    margin-left: 35px;
+    margin-right: 35px;
+    max-width: none;
+}
+
+.filters-section {
+    margin-bottom: 40px;
+}
+
+.filters-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 6px 0;
+    position: relative;
+}
+
+.filters-section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filters-section-header-left h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    color: #202020;
+}
+
+.collapse-btn {
+    position: absolute;
+    left: -28px;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #808080;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #202020;
+    /* Changed to dark/black */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #808080;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collapse-btn:hover,
+.add-btn:hover,
+.action-btn:hover {
+    background-color: #f3f3f3;
+    color: #202020;
+}
+
+.chevron-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+    transform: rotate(-90deg);
+}
+
+.chevron-icon.open {
+    transform: rotate(0deg);
+}
+
+.add-btn svg,
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.filter-icon-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 24px;
+}
+
+.filters-container .avatar {
+    border-radius: 4px !important;
+}
+
+.filters-container .avatar img,
+.filters-container .avatar span {
+    border-radius: 4px !important;
+}
+
+.filter-icon-box svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+
+.divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    width: 100%;
+}
+
+.empty-state {
+    color: #808080;
+    font-size: 13px;
+    padding: 16px 0;
+}
+
+.filters-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.filter-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #f0f0f0;
+}
+
+.filter-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #202020;
+    font-size: 14px;
+}
+
+.filter-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.labels-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.label-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #f0f0f0;
+}
+
+.label-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #202020;
+    font-size: 14px;
+    padding-left: 0px;
+}
+
+.label-icon {
+    width: 18px;
+    height: 18px;
+    color: #808080;
+}
+
+.label-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    /* hidden by default, shown on hover like typical todo apps, though image shows them. We will show on hover */
+    /* Update: The image shows them quite visibly. It might just be the hovered state. We'll make them visible on hover to be clean, or just slightly opaque. */
+}
+
+.label-item:hover .label-actions {
+    opacity: 1;
+}
+
+.action-btn {
+    color: #808080;
+}
+
+.action-btn:hover {
+    background-color: #f3f3f3;
+    color: #202020;
+}
