@@ -1,54 +1,54 @@
 # ✅ TaskList
 
-A full-stack task management application inspired by Todoist — built with **React**, **Express**, and **MySQL**. Features include project organization, labels, filters, AI assistant, Telegram bot integration, and more.
+Ứng dụng quản lý công việc full-stack lấy cảm hứng từ Todoist — được xây dựng bằng **React**, **Express** và **MySQL**. Hỗ trợ quản lý dự án, nhãn, bộ lọc, trợ lý AI, tích hợp Telegram Bot và nhiều tính năng khác.
 
 ---
 
-## 📸 Features
+## 📸 Tính năng
 
-- 🔐 **Authentication** — Register & login with JWT-based auth
-- 📥 **Inbox, Today, Upcoming** — Smart views to organize your tasks
-- 📁 **Projects & Sections** — Group tasks into projects with custom sections
-- 🏷️ **Labels & Filters** — Tag tasks with labels and create custom filters
-- ✅ **Task Management** — Create, edit, complete, schedule, set priorities, add comments
-- 🤖 **AI Assistant** — Powered by Groq API for smart task suggestions
-- 🔔 **Notifications** — Stay updated on task activity
-- 📊 **Activity Log** — Track completed tasks and comments
-- 🤳 **Telegram Bot** — Manage tasks directly from Telegram
-- 😀 **Emoji Picker** — Add emojis to your projects and tasks
-- 🗣️ **Speech-to-Text** — Create tasks with your voice
-
----
-
-## 🛠️ Tech Stack
-
-| Layer      | Technology                              |
-| ---------- | --------------------------------------- |
-| Frontend   | React 18, Vite 5                        |
-| Backend    | Express 5 (Node.js)                     |
-| Database   | MySQL (hosted on Railway)               |
-| AI         | Groq SDK                                |
-| Bot        | node-telegram-bot-api                   |
-| Auth       | JSON Web Tokens (jsonwebtoken, bcryptjs)|
+- 🔐 **Xác thực** — Đăng ký & đăng nhập với JWT
+- 📥 **Inbox, Hôm nay, Sắp tới** — Các chế độ xem thông minh để sắp xếp công việc
+- 📁 **Dự án & Phân mục** — Nhóm công việc theo dự án với các phân mục tùy chỉnh
+- 🏷️ **Nhãn & Bộ lọc** — Gắn nhãn cho công việc và tạo bộ lọc tùy chỉnh
+- ✅ **Quản lý công việc** — Tạo, sửa, hoàn thành, đặt lịch, ưu tiên, bình luận
+- 🤖 **Trợ lý AI** — Tích hợp Groq API để gợi ý công việc thông minh
+- 🔔 **Thông báo** — Cập nhật hoạt động của công việc
+- 📊 **Nhật ký hoạt động** — Theo dõi công việc đã hoàn thành và bình luận
+- 🤳 **Telegram Bot** — Quản lý công việc trực tiếp từ Telegram
+- 😀 **Emoji Picker** — Thêm emoji vào dự án và công việc
+- 🗣️ **Giọng nói thành văn bản** — Tạo công việc bằng giọng nói
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Công nghệ sử dụng
+
+| Tầng       | Công nghệ                               |
+| ---------- | ---------------------------------------- |
+| Frontend   | React 18, Vite 5                         |
+| Backend    | Express 5 (Node.js)                      |
+| Cơ sở dữ liệu | MySQL (Railway)                      |
+| AI         | Groq SDK                                 |
+| Bot        | node-telegram-bot-api                    |
+| Xác thực   | JSON Web Tokens (jsonwebtoken, bcryptjs) |
+
+---
+
+## 📂 Cấu trúc dự án
 
 ```
 TaskList/
-├── frontend/                # React + Vite client
+├── frontend/                # React + Vite (giao diện)
 │   ├── src/
-│   │   ├── components/      # Reusable UI components
+│   │   ├── components/      # Các component tái sử dụng
 │   │   │   ├── AddTaskModal/
 │   │   │   ├── AiAssistant/
 │   │   │   ├── Sidebar/
 │   │   │   ├── TaskDetailModal/
 │   │   │   ├── TelegramModal/
 │   │   │   └── ...
-│   │   ├── contexts/        # React Context (Auth, etc.)
-│   │   ├── Layout/          # Main layout wrapper
-│   │   ├── pages/           # Page views
+│   │   ├── contexts/        # React Context (Auth, v.v.)
+│   │   ├── Layout/          # Layout chính
+│   │   ├── pages/           # Các trang
 │   │   │   ├── Inbox/
 │   │   │   ├── Today/
 │   │   │   ├── Upcoming/
@@ -58,26 +58,26 @@ TaskList/
 │   │   │   ├── Login/
 │   │   │   ├── Register/
 │   │   │   └── Onboarding/
-│   │   └── main.jsx         # App entry point
+│   │   └── main.jsx         # Điểm khởi chạy ứng dụng
 │   ├── package.json
 │   └── vite.config.js
 │
 ├── backend/                 # Express API server
 │   ├── routes/
-│   │   ├── authRoutes.js    # Register / Login
-│   │   ├── tasks.js         # CRUD tasks
-│   │   ├── projects.js      # CRUD projects
-│   │   ├── labels.js        # CRUD labels
-│   │   ├── sections.js      # CRUD sections
-│   │   ├── filters.js       # CRUD filters
-│   │   ├── activity.js      # Activity logs
-│   │   ├── ai.js            # AI assistant endpoints
-│   │   ├── telegram.js      # Telegram bot logic
-│   │   └── users.js         # User profile
+│   │   ├── authRoutes.js    # Đăng ký / Đăng nhập
+│   │   ├── tasks.js         # CRUD công việc
+│   │   ├── projects.js      # CRUD dự án
+│   │   ├── labels.js        # CRUD nhãn
+│   │   ├── sections.js      # CRUD phân mục
+│   │   ├── filters.js       # CRUD bộ lọc
+│   │   ├── activity.js      # Nhật ký hoạt động
+│   │   ├── ai.js            # API trợ lý AI
+│   │   ├── telegram.js      # Logic Telegram bot
+│   │   └── users.js         # Hồ sơ người dùng
 │   ├── middleware/
-│   │   └── verifyToken.js   # JWT middleware
-│   ├── db.js                # MySQL connection pool
-│   ├── index.js             # Server entry point
+│   │   └── verifyToken.js   # Middleware xác thực JWT
+│   ├── db.js                # Kết nối MySQL
+│   ├── index.js             # Điểm khởi chạy server
 │   └── package.json
 │
 ├── .gitignore
@@ -86,28 +86,28 @@ TaskList/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Hướng dẫn cài đặt
 
-### Prerequisites
+### Yêu cầu
 
 - **Node.js** ≥ 18
-- **MySQL** database (local or cloud, e.g. Railway)
+- **MySQL** (local hoặc cloud, ví dụ Railway)
 
-### 1. Clone the repository
+### 1. Clone dự án
 
 ```bash
 git clone https://github.com/nhan12062004/TaskList.git
 cd TaskList
 ```
 
-### 2. Setup Backend
+### 2. Cài đặt Backend
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file inside `backend/`:
+Tạo file `.env` trong thư mục `backend/`:
 
 ```env
 DB_HOST=your_db_host
@@ -124,15 +124,15 @@ TELEGRAM_BOT_TOKEN=your_telegram_bot_token
 TELEGRAM_BOT_USERNAME=your_bot_username
 ```
 
-Start the backend server:
+Chạy server backend:
 
 ```bash
 node index.js
 ```
 
-The API will be running at `http://localhost:3000`.
+Server API sẽ chạy tại `http://localhost:3000`.
 
-### 3. Setup Frontend
+### 3. Cài đặt Frontend
 
 ```bash
 cd frontend
@@ -140,54 +140,54 @@ npm install
 npm run dev
 ```
 
-The app will be running at `http://localhost:5173`.
+Ứng dụng sẽ chạy tại `http://localhost:5173`.
 
 ---
 
-## 📡 API Endpoints
+## 📡 Các API Endpoint
 
-| Method | Endpoint                    | Description               |
-| ------ | --------------------------- | ------------------------- |
-| POST   | `/api/auth/register`        | Register a new user       |
-| POST   | `/api/auth/login`           | Login & get JWT token     |
-| GET    | `/api/tasks`                | Get user's tasks          |
-| POST   | `/api/tasks`                | Create a new task         |
-| PUT    | `/api/tasks/:id`            | Update a task             |
-| DELETE | `/api/tasks/:id`            | Delete a task             |
-| GET    | `/api/projects`             | Get user's projects       |
-| POST   | `/api/projects`             | Create a new project      |
-| GET    | `/api/labels`               | Get user's labels         |
-| POST   | `/api/labels`               | Create a new label        |
-| GET    | `/api/sections`             | Get sections              |
-| POST   | `/api/sections`             | Create a new section      |
-| GET    | `/api/filters`              | Get user's filters        |
-| GET    | `/api/activity`             | Get activity logs         |
-| POST   | `/api/ai/*`                 | AI assistant endpoints    |
-| POST   | `/api/telegram/link`        | Generate Telegram link    |
-| GET    | `/api/telegram/status`      | Check Telegram connection |
-| POST   | `/api/telegram/disconnect`  | Disconnect Telegram       |
-| GET    | `/health`                   | Health check              |
+| Phương thức | Endpoint                   | Mô tả                         |
+| ----------- | -------------------------- | ------------------------------ |
+| POST        | `/api/auth/register`       | Đăng ký tài khoản mới         |
+| POST        | `/api/auth/login`          | Đăng nhập & nhận JWT token     |
+| GET         | `/api/tasks`               | Lấy danh sách công việc       |
+| POST        | `/api/tasks`               | Tạo công việc mới              |
+| PUT         | `/api/tasks/:id`           | Cập nhật công việc             |
+| DELETE      | `/api/tasks/:id`           | Xóa công việc                  |
+| GET         | `/api/projects`            | Lấy danh sách dự án           |
+| POST        | `/api/projects`            | Tạo dự án mới                  |
+| GET         | `/api/labels`              | Lấy danh sách nhãn            |
+| POST        | `/api/labels`              | Tạo nhãn mới                   |
+| GET         | `/api/sections`            | Lấy danh sách phân mục        |
+| POST        | `/api/sections`            | Tạo phân mục mới               |
+| GET         | `/api/filters`             | Lấy danh sách bộ lọc          |
+| GET         | `/api/activity`            | Lấy nhật ký hoạt động          |
+| POST        | `/api/ai/*`                | Các endpoint trợ lý AI        |
+| POST        | `/api/telegram/link`       | Tạo mã liên kết Telegram      |
+| GET         | `/api/telegram/status`     | Kiểm tra trạng thái Telegram   |
+| POST        | `/api/telegram/disconnect` | Hủy liên kết Telegram          |
+| GET         | `/health`                  | Kiểm tra sức khỏe server      |
 
 ---
 
 ## 🤖 Telegram Bot
 
-The integrated Telegram bot allows you to:
+Telegram Bot tích hợp cho phép bạn:
 
-- ➕ Add tasks via chat
-- 📋 View your task list
-- ✅ Mark tasks as complete
-- 🗣️ Send voice messages to create tasks
-- 📷 Send images for AI analysis
+- ➕ Thêm công việc qua tin nhắn
+- 📋 Xem danh sách công việc
+- ✅ Đánh dấu hoàn thành công việc
+- 🗣️ Gửi tin nhắn thoại để tạo công việc
+- 📷 Gửi hình ảnh để AI phân tích
 
-Link your account from the app: **Settings → Telegram → Connect**.
-
----
-
-## 📝 License
-
-This project is for educational purposes.
+Liên kết tài khoản từ ứng dụng: **Cài đặt → Telegram → Kết nối**.
 
 ---
 
-> Built with ❤️ by [nhan12062004](https://github.com/nhan12062004)
+## 📝 Giấy phép
+
+Dự án này được xây dựng cho mục đích học tập.
+
+---
+
+> Được xây dựng với ❤️ bởi [nhan12062004](https://github.com/nhan12062004)
